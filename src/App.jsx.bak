@@ -1,0 +1,82 @@
+import React, { useState, useEffect, useRef } from 'react'
+const utm = "?utm_source=scrimba_degree&utm_medium=referral"
+
+const loadData = (options) => {
+  fetch(options.url)
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok')
+      return response.json()
+    })
+    .then(data => { if (options.onSuccess) options.onSuccess(data) })
+    .catch(err => { if (options.onError) options.onError(err) })
+}
+
+export default function App() {
+  const [photo, setPhoto] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [query, setQuery] = useState('Mountain')
+
+  const queryInput = useRef(null)
+  const url = "https://apis.scrimba.com/unsplash/photos/random/?orientation=landscape"
+
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    const photoUrl = query ? `${url}&query=${encodeURIComponent(query)}` : url
+    loadData({
+      url: photoUrl,
+      onSuccess: res => {
+        setPhoto(res)
+        setLoading(false)
+      },
+      onError: err => {
+        setError(err)
+        setLoading(false)
+      }
+    })
+  }, [query])
+
+  const searchPhotos = (e) => {
+    e.preventDefault()
+    const q = queryInput.current.value.trim()
+    if (q) setQuery(q)
+  }
+
+  return (
+    <div className="container">
+      <div className="item">
+        {loading && <div className="status">Loading photo…</div>}
+        {error && <div className="status error">Failed to load photo: {error.message}</div>}
+
+        {photo && photo.urls && (
+          <img className="img" src={photo.urls.regular} alt={photo.alt_description || `Photo by ${photo.user?.name || 'Unsplash'}`} />
+        )}
+
+        <div className="red-border" aria-hidden="true"></div>
+
+        <div className="right-frame">
+         {/* <form className="search" onSubmit={searchPhotos}>
+            <input ref={queryInput} defaultValue={query} className="search-input" placeholder="Search theme (e.g. Mountain, Ocean)" aria-label="Search photos" />
+            <button className="search-btn" type="submit">Search</button>
+          </form>*/}
+
+          <h4 className="name first-name">Per</h4>
+          <h4 className="name last-name">Borgen</h4>
+          <div className="divider"></div>
+          <h5 className="job-title">Frontend Developer</h5>
+          <h5 className="email">per@scrimba.com</h5>
+          <h5 className="phone">+47 22 22 55 55</h5>
+        </div>
+
+        <div className="caption" aria-hidden={!photo}>
+          <span className="credits">Photo by
+            <a href={(photo?.user?.links?.html || '#') + utm} target="_blank" rel="noopener noreferrer">{photo?.user?.name || 'Unknown'}</a>
+            <span> on </span>
+            <a href={"https://unsplash.com" + utm} target="_blank" rel="noopener noreferrer">Unsplash</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}

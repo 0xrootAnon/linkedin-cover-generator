@@ -1,0 +1,22 @@
+{
+  "name": "linkedincover",
+  "version": "1.0.0",
+  "description": "madeforfun",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "0xrootAnon",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.2",
+    "vite": "^7.1.5"
+  }
+}
