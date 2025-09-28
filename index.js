@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 const { useState, useEffect, useRef } = React;
-const utm = "?utm_source=scrimba_degree&utm_medium=referral"
 
+const utm = "?utm_source=scrimba_degree&utm_medium=referral"
 
 const loadData = (options) => {
   fetch(options.url)
@@ -15,12 +15,11 @@ const loadData = (options) => {
 }
 
 const App = (props) => {
-  let [photo, setPhoto] = useState([]);
-  
+  let [photo, setPhoto] = useState([]); 
   // CHANGE THE THEME OF YOUR BACKGROUND COVER
   // E.G YOUR HOBBY, COUNTRY, INTEREST, OR JUST SOMETHING VISUALLY PLEASING 
   let [query, setQuery] = useState("Mountain");
-  
+
   const queryInput = useRef(null);
   const url =
    "https://apis.scrimba.com/unsplash/photos/random/?orientation=landscape"
@@ -38,7 +37,7 @@ const App = (props) => {
     e.preventDefault();
     setQuery(queryInput.current.value);
   };
-  
+
   if (query && photo.id) {
     return (
       <div className="container">
@@ -49,8 +48,7 @@ const App = (props) => {
         />
         <div className="red-border">
         </div>
-        <div className="right-frame">
-        
+        <div className="right-frame">    
           {/* ADD YOUR PERSONAL DETAILS */}
           <h4 className="name first-name">Khwahish</h4>
           <h4 className="name last-name">Sharma</h4>
@@ -58,7 +56,7 @@ const App = (props) => {
           <h5 className="job-title">Software Engineer</h5>
           <h5 className="email">khwahish.dev@gmail.com</h5>
           <h5 className="phone"></h5>
-          
+
         </div>
           <div className="caption">
           <span className="credits">Photo by 

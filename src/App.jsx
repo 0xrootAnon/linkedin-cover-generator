@@ -90,11 +90,11 @@ useEffect(() => {
             <button className="search-btn" type="submit">Search</button>
           </form>
           */}
-          <h4 className="name first-name">Palak</h4>
-          <h4 className="name last-name">Mishra</h4>
+          <h4 className="name first-name">Khwahish</h4>
+          <h4 className="name last-name">Sharma</h4>
           <div className="divider"></div>
-          <h5 className="job-title">Legal Researcher</h5>
-          <h5 className="email">palak.mishra0410@gmail.com</h5>
+          <h5 className="job-title">Software Engineer</h5>
+          <h5 className="email">khwahish.dev@gmail.com</h5>
           <h5 className="phone"></h5>
         </div>
 
